@@ -26,16 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
         Retrofit retrofit = ApiService.getRetrofitService();
         ApiEndPoint apiEndPoint = retrofit.create(ApiEndPoint.class);
-        Call<List<User>> call = apiEndPoint.getUser();
-        call.enqueue(new Callback<List<User>>() {
+        Call<User> call = apiEndPoint.getData();
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                Toast.makeText(MainActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<User> call, Response<User> response) {
+                List<User> users = response.body().getUser();
+                for (User u : users) {
+                    Log.d("Username", u.getLogin());
+                }
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<User> call, Throwable t) {
+
             }
         });
     }

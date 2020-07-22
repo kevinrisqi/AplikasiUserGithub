@@ -3,6 +3,8 @@ package com.zenai.aplikasiusergithub.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class User {
 
     @SerializedName("login")
@@ -38,6 +40,9 @@ public class User {
     @SerializedName("repos_url")
     @Expose
     private String reposUrl;
+    @SerializedName("items")
+    @Expose
+    private List<User> users;
 
     public User(String login, Integer id, String nodeId, String avatarUrl, String url, String followersUrl, String followingUrl, String starredUrl, String subscriptionsUrl, String organizationsUrl, String reposUrl) {
         this.login = login;
@@ -139,5 +144,13 @@ public class User {
 
     public void setReposUrl(String reposUrl) {
         this.reposUrl = reposUrl;
+    }
+
+    public List<User> getUser() {
+        return users;
+    }
+
+    public void setUser(List<User> user) {
+        this.users = user;
     }
 }

@@ -10,6 +10,6 @@ import retrofit2.http.GET;
 public interface ApiEndPoint {
 
     @GET(Api.END_POINT_LOCATION)
-    Call<List<User>> getUser();
+    Call<User> getData();
 
 }
